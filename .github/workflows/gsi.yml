@@ -58,7 +58,7 @@ jobs:
              echo "bot-sf-user=${{ secrets.SF_USER }}" >> "sf-creds.config"
              echo "bot-send-announcement=true" >> "sf-creds.config"
              echo "bot-sf-proj=${{ secrets.PROJECT }}" >> "sf-creds.config"
-             echo "bot-announcement-id=-1001446520361" >> "sf-creds.config"
+             echo "bot-announcement-id=-1001405823755" >> "sf-creds.config"
              echo "bot-sf-pass=${{ secrets.SF_PASS }}" >> "sf-creds.config"
              echo "bot-sf-host=frs.sourceforge.net" >> "sf-creds.config"
        - name: Run Bot
