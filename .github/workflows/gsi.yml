@@ -1,10 +1,10 @@
-name: BoboBot automated
+name: Priiiyo-gsibot automated
  
 on: push
 
 env:
   TYPE: build
-  TZ: Asia/Manila
+  TZ: Asia/Dhaka
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -23,9 +23,9 @@ jobs:
          run: |
               sudo -E apt-get -qq update
               sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev rsync flex bison ccache openjdk-8-jdk expect aria2
-              git config --global user.name "nnippon"
-              git config --global user.email "adameyyad999@gmail.com"
-              git clone --recurse-submodules https://github.com/nnippon/ErfanGSIs
+              git config --global user.name "smpriiiyo"
+              git config --global user.email "priiiyoplus@gmail.com"
+              git clone --recurse-submodules https://github.com/smpriiiyo/PriiiyoGSIs ErfanGSIs
      
        - name: Setup Erfan Tools
          continue-on-error: true
@@ -37,7 +37,7 @@ jobs:
          continue-on-error: true
          timeout-minutes: 3
          run: |
-              java -jar Bobo.jar
+              java -jar BoboBot-1-all.jar
          
        - name: Add values
          continue-on-error: true
@@ -66,14 +66,14 @@ jobs:
          timeout-minutes: 350
          run: |
               sudo chmod -R 0777 *
-              sudo java -jar Bobo.jar
+              sudo java -jar BoboBot-1-all.jar
          
        - name: +1 
          continue-on-error: true
          timeout-minutes: 1
          run: |
               mkdir loop
-              git clone https://github.com/nnippon/gsibot-personal loop/loop
+              git clone https://github.com/priiiyolab/priiiyo-gsibot loop/loop
               cd loop/loop
               echo "1" >> loop.txt
               git add .
