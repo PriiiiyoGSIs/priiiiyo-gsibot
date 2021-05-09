@@ -55,11 +55,11 @@ jobs:
              touch sf-creds.config
              echo "#Config file" >> "sf-creds.config"
              echo "#Sun Jan 10 09:00:49 Jer 2021" >> "sf-creds.config"
-             echo "bot-sf-user=${{ secrets.SFUSER }}" >> "sf-creds.config"
+             echo "bot-sf-user=${{ secrets.SF_USER }}" >> "sf-creds.config"
              echo "bot-send-announcement=true" >> "sf-creds.config"
              echo "bot-sf-proj=${{ secrets.PROJECT }}" >> "sf-creds.config"
              echo "bot-announcement-id=-1001446520361" >> "sf-creds.config"
-             echo "bot-sf-pass=${{ secrets.SFPASS }}" >> "sf-creds.config"
+             echo "bot-sf-pass=${{ secrets.SF_PASS }}" >> "sf-creds.config"
              echo "bot-sf-host=frs.sourceforge.net" >> "sf-creds.config"
        - name: Run Bot
          continue-on-error: true
@@ -87,9 +87,9 @@ jobs:
               expect -c "
               spawn git push -f 
               expect \"Username\"
-              send \"${{ secrets.GHUSER }}\r\"
+              send \"${{ secrets.GH_USER }}\r\"
               expect \"Password\"
-              send \"${{ secrets.GHPASS }}\r\"
+              send \"${{ secrets.GH_PASS }}\r\"
               expect \"master -> master\"
               set timeout -10
               interact"
