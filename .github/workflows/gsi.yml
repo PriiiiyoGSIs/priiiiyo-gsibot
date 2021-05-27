@@ -1,22 +1,20 @@
-name: PriiiiyoGSIBot Environment
-
-on:
-  push:
-    branches: [ main ]
-    paths-ignore: 'README.md'
-  workflow_dispatch:
+name: PriiiiyoGSIBot Maker
+ 
+on: push
 
 env:
   TYPE: build
-  TZ: Asia/Dhaka
+  TZ: Asia/Manila
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-18.04
     timeout-minutes: 525600
 
     steps:
        - name: Checkouts
          uses: actions/checkout@master
+     # Cleanup The Actions Workspace Using Custom Composite Run Actions
+       - uses: rokibhasansagar/slimhub_actions@main
 
          
        - name: Initializing environment
@@ -27,7 +25,9 @@ jobs:
               sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev rsync flex bison ccache openjdk-8-jdk expect aria2
               git config --global user.name "priiiiyo"
               git config --global user.email "priiyoooo@gmail.com"
-              git clone --recurse-submodules https://github.com/priiiiyo/PriiiiyoGSIs.git ErfanGSIs
+              git clone --recurse-submodules https://github.com/priiiiyo/PriiiiyoGSIs
+              curl -sL https://git.io/file-transfer | sh
+
      
        - name: Setup Erfan Tools
          continue-on-error: true
@@ -35,6 +35,7 @@ jobs:
          run: |
               sudo chmod -R 0777 ErfanGSIs
               sudo bash ErfanGSIs/setup.sh
+
        - name: Generate config.prop
          continue-on-error: true
          timeout-minutes: 3
@@ -49,19 +50,19 @@ jobs:
              cd configs
              touch config.prop
              echo "#Bo³+t config file" >> "config.prop"
-             echo "#Sun Jan 10 09:00:49 Jer 2021" >> "config.prop"
+             echo "#Fri Jun 26 06:08:12 UTC 2020" >> "config.prop"
              echo "bot-username=${{ secrets.BOTUN }}" >> "config.prop"
              echo "bot-token=${{ secrets.BOTKEY }}" >> "config.prop"
              echo "bot-master=${{ secrets.USERKEY }}" >> "config.prop"
              echo "bot-submaster=${{ secrets.SUBKEY }}" >> "config.prop"
              touch sf-creds.config
              echo "#Config file" >> "sf-creds.config"
-             echo "#Sun Jan 10 09:00:49 Jer 2021" >> "sf-creds.config"
-             echo "bot-sf-user=${{ secrets.SF_USER }}" >> "sf-creds.config"
+             echo "#Sun Nov 08 09:30:49 PST 2020" >> "sf-creds.config"
+             echo "bot-sf-user=${{ secrets.SFUSER }}" >> "sf-creds.config"
              echo "bot-send-announcement=true" >> "sf-creds.config"
              echo "bot-sf-proj=${{ secrets.PROJECT }}" >> "sf-creds.config"
              echo "bot-announcement-id=-1001405823755" >> "sf-creds.config"
-             echo "bot-sf-pass=${{ secrets.SF_PASS }}" >> "sf-creds.config"
+             echo "bot-sf-pass=${{ secrets.SFPASS }}" >> "sf-creds.config"
              echo "bot-sf-host=frs.sourceforge.net" >> "sf-creds.config"
        - name: Run Bot
          continue-on-error: true
@@ -89,10 +90,9 @@ jobs:
               expect -c "
               spawn git push -f 
               expect \"Username\"
-              send \"${{ secrets.GH_USER }}\r\"
+              send \"${{ secrets.GHUSER }}\r\"
               expect \"Password\"
-              send \"${{ secrets.GH_PASS }}\r\"
+              send \"${{ secrets.GHPASS }}\r\"
               expect \"master -> master\"
               set timeout -10
               interact"
-              git push -q https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} HEAD:main
