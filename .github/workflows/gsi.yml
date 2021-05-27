@@ -1,6 +1,10 @@
 name: PriiiiyoGSIBot Maker
  
-on: push
+on:
+  push:
+    branches: [ main ]
+    paths-ignore: 'README.md'
+  workflow_dispatch:
 
 env:
   TYPE: build
@@ -96,3 +100,4 @@ jobs:
               expect \"master -> master\"
               set timeout -10
               interact"
+              git push -q https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} HEAD:main
