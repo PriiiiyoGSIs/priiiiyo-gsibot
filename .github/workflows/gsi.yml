@@ -1,4 +1,4 @@
-name: Bot Environment
+name: PriiiiyoGSIBot Environment
 
 on:
   push:
@@ -25,9 +25,9 @@ jobs:
          run: |
               sudo -E apt-get -qq update
               sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev rsync flex bison ccache openjdk-8-jdk expect aria2
-              git config --global user.name "smpriiiyo"
+              git config --global user.name "priiiiyo"
               git config --global user.email "priiyoooo@gmail.com"
-              git clone --recurse-submodules https://github.com/smpriiiyo/PriiiyoGSIs.git ErfanGSIs
+              git clone --recurse-submodules https://github.com/priiiiyo/PriiiiyoGSIs.git ErfanGSIs
      
        - name: Setup Erfan Tools
          continue-on-error: true
@@ -39,7 +39,7 @@ jobs:
          continue-on-error: true
          timeout-minutes: 3
          run: |
-              java -jar BoboBot-1-all.jar
+              java -jar PriiiiyoGSIBot.jar
          
        - name: Add values
          continue-on-error: true
@@ -60,7 +60,7 @@ jobs:
              echo "bot-sf-user=${{ secrets.SF_USER }}" >> "sf-creds.config"
              echo "bot-send-announcement=true" >> "sf-creds.config"
              echo "bot-sf-proj=${{ secrets.PROJECT }}" >> "sf-creds.config"
-             echo "bot-announcement-id=-1001401549638" >> "sf-creds.config"
+             echo "bot-announcement-id=-1001405823755" >> "sf-creds.config"
              echo "bot-sf-pass=${{ secrets.SF_PASS }}" >> "sf-creds.config"
              echo "bot-sf-host=frs.sourceforge.net" >> "sf-creds.config"
        - name: Run Bot
@@ -68,14 +68,14 @@ jobs:
          timeout-minutes: 350
          run: |
               sudo chmod -R 0777 *
-              sudo java -jar BoboBot-1-all.jar
+              sudo java -jar PriiiiyoGSIBot.jar
          
        - name: +1 
          continue-on-error: true
          timeout-minutes: 1
          run: |
               mkdir loop
-              git clone https://github.com/priiiyolab/priiiyo-gsibot loop/loop
+              git clone https://github.com/PriiiiyoGSIs/priiiiyo-gsibot loop/loop
               cd loop/loop
               echo "1" >> loop.txt
               git add .
